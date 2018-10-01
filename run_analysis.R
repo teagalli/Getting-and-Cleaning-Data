@@ -126,10 +126,10 @@ getGroupData <- function(group, features = featuresList, folder = dataFolder) {
   # assign column names to group features data
   names(featuresData) = features$V2
   
-  # aggregate train group dataset
+  # aggregate group dataset
   groupDataSet = cbind(subjectData, activityData, featuresData)
   
-  # add train group flag
+  # add group flag
   groupDataSet$GroupFlag <- paste0(group,"Group")
   return(groupDataSet)
   }
