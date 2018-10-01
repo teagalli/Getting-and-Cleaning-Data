@@ -161,7 +161,7 @@ subsetFeatureData
 
 activityLables <- read.table(paste0(dataFolder,"/activity_labels.txt"), header = FALSE)
 names(activityLables) <- c("Activity", "ActivityLabel")
-aggDataWithActivityLabels <- join(activityLables, aggregateGroupData)
+aggDataWithActivityLabels <- merge(activityLables, aggregateGroupData)
 aggDataWithActivityLabels
 
 # 4. Appropriately labels the data set with descriptive variable names.
@@ -173,8 +173,11 @@ aggDataWithActivityLabels
 avgBySubjectActivity <- aggregate(aggDataWithActivityLabels[,!names(aggDataWithActivityLabels) %in% c("Activity", "ActivityLabel", "Subject", "GroupFlag")], 
           by = list(aggDataWithActivityLabels$ActivityLabel, aggDataWithActivityLabels$Subject),
           FUN = mean)
-names(avgBySubjectActivity[,1:2]) <- c("Activity", "Subject")
+names(avgBySubjectActivity)[1:2] <- c("Activity", "Subject")
+colnames(avgBySubjectActivity)[3:ncol(avgBySubjectActivity)] <- paste("Mean_", colnames(avgBySubjectActivity[,3:ncol(avgBySubjectActivity)]))
 avgBySubjectActivity
+
+write.table(avgBySubjectActivity, paste0(projectFolder,"Avg_Feature_by_Activity_Subject.txt"), row.names = FALSE)
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
