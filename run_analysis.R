@@ -2,7 +2,7 @@
 #install.packages("plyr")
 library("plyr")
 
-projectFolder <- "C:/Users/Tea Laptop/Desktop/personal/School/Con-Ed/Data Science Specialization (coursera)/2. Getting and Cleaning Data/Week 5/Project"
+projectFolder <- "~/Getting and Cleaning Data/Week 5/Project" # file folder location
 dir.create(projectFolder)
 setwd(projectFolder)
 
